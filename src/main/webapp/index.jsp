@@ -5,7 +5,7 @@
     <title>Safety Learners</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
+<h1><%= "Welcome to Safety Learners" %>
 </h1>
 <br/>
 <a href="hello-servlet">Hello Servlet</a>
