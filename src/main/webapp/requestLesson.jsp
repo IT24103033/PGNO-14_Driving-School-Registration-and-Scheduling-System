@@ -9,6 +9,7 @@
   <script src="JavaScript/navbar.js"></script>
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 <div class="container mt-4">
   <h2><center><b>Request a Lesson</b></center></h2>
   <%

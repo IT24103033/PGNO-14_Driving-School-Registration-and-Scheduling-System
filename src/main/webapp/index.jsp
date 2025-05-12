@@ -6,39 +6,13 @@
 
     <title>Safety Learners</title>
     <link rel="stylesheet" href="css/home.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="JavaScript/navbar.js"></script>
+    <script src="JavaScript/hero-section.js"></script>
 
 </head>
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar">
-    <div class="navbar-top">
-        <div class="logo">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="M12 16l4-4-4-4M8 12h8"></path>
-            </svg>
-            Safety Learners
-        </div>
-        <div class="user-controls">
-            <div class="user-info">
-                <span>Welcome, User</span>
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                </svg>
-            </div>
-            <button class="btn btn-primary"><font size="3">Login</font></button>
-        </div>
-    </div>
-    <div class="navbar-main">
-        <ul class="nav-links">
-            <li><a href="dashboard.jsp">Dashboard</a></li>
-            <li><a href="requestLesson.jsp">Request Lesson</a></li>
-            <li><a href="lessonQueue.jsp">Lesson Queue</a></li>
-            <li><a href="sheduleLesson.jsp">Schedule Lesson</a></li>
-        </ul>
-    </div>
-</nav>
+<jsp:include page="navbar.jsp" />
 
 <!-- Hero Section with Image Slider -->
 <section class="hero-section">
@@ -128,107 +102,6 @@
     </div>
 </section>
 
-<!-- JavaScript for Image Slider -->
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        // Get all slides, dots and navigation arrows
-        const slides = document.querySelectorAll('.slide');
-        const dots = document.querySelectorAll('.slider-dot');
-        const prevArrow = document.querySelector('.slider-arrow.prev');
-        const nextArrow = document.querySelector('.slider-arrow.next');
-        let currentSlide = 0;
-        let slideInterval;
-
-        // Function to change slide
-        function showSlide(index) {
-            // Reset the index if it's out of bounds
-            if (index >= slides.length) {
-                index = 0;
-            } else if (index < 0) {
-                index = slides.length - 1;
-            }
-
-            // Hide all slides
-            slides.forEach(slide => slide.classList.remove('active'));
-            dots.forEach(dot => dot.classList.remove('active'));
-
-            // Show the selected slide
-            slides[index].classList.add('active');
-            dots[index].classList.add('active');
-            currentSlide = index;
-        }
-
-        // Function to move to the next slide
-        function nextSlide() {
-            showSlide(currentSlide + 1);
-        }
-
-        // Function to move to the previous slide
-        function prevSlide() {
-            showSlide(currentSlide - 1);
-        }
-
-        // Add click events to dots
-        dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => {
-                showSlide(index);
-                resetInterval(); // Reset the auto-rotation when manually changing
-            });
-        });
-
-        // Add click events to arrows
-        if (nextArrow) {
-            nextArrow.addEventListener('click', () => {
-                nextSlide();
-                resetInterval(); // Reset the auto-rotation when manually changing
-            });
-        }
-
-        if (prevArrow) {
-            prevArrow.addEventListener('click', () => {
-                prevSlide();
-                resetInterval(); // Reset the auto-rotation when manually changing
-            });
-        }
-
-        // Function to reset the interval timer
-        function resetInterval() {
-            clearInterval(slideInterval);
-            startInterval();
-        }
-
-        // Function to start auto-rotation
-        function startInterval() {
-            slideInterval = setInterval(nextSlide, 5000); // Change slide every 5 seconds
-        }
-
-        // Initialize the auto-rotation
-        startInterval();
-
-        // Add keyboard navigation
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'ArrowLeft') {
-                prevSlide();
-                resetInterval();
-            } else if (e.key === 'ArrowRight') {
-                nextSlide();
-                resetInterval();
-            }
-        });
-
-        // Pause slider on hover
-        const heroSection = document.querySelector('.hero-section');
-        if (heroSection) {
-            heroSection.addEventListener('mouseenter', () => {
-                clearInterval(slideInterval);
-            });
-
-            heroSection.addEventListener('mouseleave', () => {
-                startInterval();
-            });
-        }
-    });
-</script>
 <footer>
 <div class="container">
     <div class="footer-content">

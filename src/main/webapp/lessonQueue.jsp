@@ -40,6 +40,7 @@
   </script>
 </head>
 <body>
+<jsp:include page="navbar.jsp" />
 <div class="container">
   <h2>Lesson Queue</h2>
   <p>Current Queue: <span class="pending-count">
@@ -137,7 +138,6 @@
     <a href="requestLesson.jsp" class="btn btn-primary">Request New Lesson</a>
     <form action="lesson" method="post" style="display:inline;">
       <input type="hidden" name="action" value="schedule">
-      <button type="submit" class="btn btn-success">Schedule Next Lesson</button>
     </form>
     <a href="index.jsp" class="btn btn-secondary">Back to Home</a>
   </div>
