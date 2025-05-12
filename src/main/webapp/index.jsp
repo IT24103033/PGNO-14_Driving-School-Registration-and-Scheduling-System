@@ -75,7 +75,9 @@
         <h1 class="hero-title">Welcome to Safety Learners</h1>
         <p class="hero-subtitle">Your journey to becoming a confident driver starts here. Schedule lessons, track your progress, and achieve your driving goals.</p>
         <div class="hero-buttons">
-            <a href="requestLesson.jsp" class="btn btn-primary">Register Now</a>
+            <a href="requestLesson.jsp" class="btn btn-primary">Register as a Student</a>
+            <br>
+            <a href="requestLesson.jsp" class="btn btn-primary">Register as an Instructor</a>
         </div>
     </div>
 </section>

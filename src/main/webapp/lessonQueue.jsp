@@ -5,10 +5,9 @@
 <%@ page import="java.util.List" %>
 <%@ page import="java.util.ArrayList" %>
 <%
-  // Trigger a request to /lesson to initialize the Servlet
   if (application.getAttribute("queueManager") == null) {
     request.getRequestDispatcher("/lesson").forward(request, response);
-    return; // Stop rendering the page after forwarding
+    return;
   }
 %>
 <html>
@@ -19,13 +18,39 @@
     .action-btn { margin-right: 5px; }
     .pending-count { font-weight: bold; }
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="JavaScript/custom.js"></script>
+  <script src="JavaScript/navbar.js"></script>
+  <script>
+    // Trigger modal on update error
+
+
+      // Add validation to update form submissions
+      document.querySelectorAll('form[action="lesson"][method="post"]').forEach(form => {
+        if (form.querySelector('input[name="action"][value="update"]')) {
+          form.onsubmit = function(event) {
+            const lessonId = form.querySelector('input[name="lessonId"]').value;
+            if (!validateUpdateForm(lessonId)) {
+              event.preventDefault();
+            }
+          };
+        }
+      }
+    }
+  </script>
 </head>
 <body>
 <div class="container">
   <h2>Lesson Queue</h2>
   <p>Current Queue: <span class="pending-count">
-        <%= ((QueueManager) application.getAttribute("queueManager")).size() %>
-    </span> Manage Queue</p>
+            <%= ((QueueManager) application.getAttribute("queueManager")).size() %>
+        </span> Manage Queue</p>
+  <%
+    String errorMessage = (String) request.getAttribute("errorMessage");
+    if (errorMessage != null) {
+      out.println("<div class='alert alert-danger'>" + errorMessage + "</div>");
+    }
+  %>
   <table class="table table-bordered">
     <thead>
     <tr>
@@ -42,6 +67,11 @@
       List<Lesson> queue = new ArrayList<>(queueManager.getLessonQueue());
       for (int i = 0; i < queue.size(); i++) {
         Lesson lesson = queue.get(i);
+        String lessonIdFromError = (String) request.getAttribute("lessonId");
+        boolean isErrorLesson = lessonIdFromError != null && lessonIdFromError.equals(lesson.getLessonId());
+        String modalDate = isErrorLesson ? (String) request.getAttribute("date") : lesson.getDate();
+        String modalTime = isErrorLesson ? (String) request.getAttribute("time") : lesson.getTime();
+        String modalLessonType = isErrorLesson ? (String) request.getAttribute("lessonType") : lesson.getLessonType();
     %>
     <tr>
       <td><%= i + 1 %></td>
@@ -59,14 +89,13 @@
           <input type="hidden" name="lessonId" value="<%= lesson.getLessonId() %>">
           <button type="submit" class="btn btn-danger action-btn">Remove</button>
         </form>
-        <button type="button" class="btn btn-warning action-btn" data-bs-toggle="modal" data-bs-target="#updateModal<%= i %>">Update</button>
+        <button type="button" class="btn btn-warning action-btn" data-bs-toggle="modal" data-bs-target="#updateModal-<%= lesson.getLessonId() %>">Update</button>
 
-        <!-- Modal for Update -->
-        <div class="modal fade" id="updateModal<%= i %>" tabindex="-1" aria-labelledby="updateModalLabel<%= i %>" aria-hidden="true">
+        <div class="modal fade" id="updateModal-<%= lesson.getLessonId() %>" tabindex="-1" aria-labelledby="updateModalLabel-<%= lesson.getLessonId() %>" aria-hidden="true">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
-                <h5 class="modal-title" id="updateModalLabel<%= i %>">Update Lesson</h5>
+                <h5 class="modal-title" id="updateModalLabel-<%= lesson.getLessonId() %>">Update Lesson</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
               </div>
               <div class="modal-body">
@@ -74,21 +103,21 @@
                   <input type="hidden" name="action" value="update">
                   <input type="hidden" name="lessonId" value="<%= lesson.getLessonId() %>">
                   <div class="mb-3">
-                    <label for="date<%= i %>" class="form-label">Date</label>
-                    <input type="date" class="form-control" id="date<%= i %>" name="date" value="<%= lesson.getDate() %>" required>
+                    <label for="date-<%= lesson.getLessonId() %>" class="form-label">Date</label>
+                    <input type="date" class="form-control" id="date-<%= lesson.getLessonId() %>" name="date" value="<%= modalDate %>" required min="<%= java.time.LocalDate.now() %>">
                   </div>
                   <div class="mb-3">
-                    <label for="time<%= i %>" class="form-label">Time</label>
-                    <input type="time" class="form-control" id="time<%= i %>" name="time" value="<%= lesson.getTime() %>" required>
+                    <label for="time-<%= lesson.getLessonId() %>" class="form-label">Time</label>
+                    <input type="time" class="form-control" id="time-<%= lesson.getLessonId() %>" name="time" value="<%= modalTime %>" required>
                   </div>
                   <div class="mb-3">
-                    <label for="lessonType<%= i %>" class="form-label">Lesson Type</label>
-                    <select class="form-control" id="lessonType<%= i %>" name="lessonType" required>
-                      <option value="Highway Driving" <%= "Highway Driving".equals(lesson.getLessonType()) ? "selected" : "" %>>Highway Driving</option>
-                      <option value="Parallel Parking" <%= "Parallel Parking".equals(lesson.getLessonType()) ? "selected" : "" %>>Parallel Parking</option>
-                      <option value="City Driving" <%= "City Driving".equals(lesson.getLessonType()) ? "selected" : "" %>>City Driving</option>
-                      <option value="Practice Test" <%= "Practice Test".equals(lesson.getLessonType()) ? "selected" : "" %>>Practice Test</option>
-                      <option value="Night Driving" <%= "Night Driving".equals(lesson.getLessonType()) ? "selected" : "" %>>Night Driving</option>
+                    <label for="lessonType-<%= lesson.getLessonId() %>" class="form-label">Lesson Type</label>
+                    <select class="form-control" id="lessonType-<%= lesson.getLessonId() %>" name="lessonType" required>
+                      <option value="Highway Driving" <%= "Highway Driving".equals(modalLessonType) ? "selected" : "" %>>Highway Driving</option>
+                      <option value="Parallel Parking" <%= "Parallel Parking".equals(modalLessonType) ? "selected" : "" %>>Parallel Parking</option>
+                      <option value="City Driving" <%= "City Driving".equals(modalLessonType) ? "selected" : "" %>>City Driving</option>
+                      <option value="Practice Test" <%= "Practice Test".equals(modalLessonType) ? "selected" : "" %>>Practice Test</option>
+                      <option value="Night Driving" <%= "Night Driving".equals(modalLessonType) ? "selected" : "" %>>Night Driving</option>
                     </select>
                   </div>
                   <button type="submit" class="btn btn-primary">Save Changes</button>
@@ -120,8 +149,5 @@
     }
   %>
 </div>
-
-<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
 </body>
 </html>
