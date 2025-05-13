@@ -24,9 +24,9 @@
         <label for="instructor">Instructor</label>
         <select id="instructor" name="instructor" required>
             <option value="" disabled selected>Select Instructor</option>
-            <option>Mr. Silva</option>
-            <option>Ms. Perera</option>
-            <option>Mr. Fernando</option>
+            <option>Mr.Silva</option>
+            <option>Ms.Perera</option>
+            <option>Mr.Fernando</option>
         </select>
 
         <label for="rating">Rating</label>
