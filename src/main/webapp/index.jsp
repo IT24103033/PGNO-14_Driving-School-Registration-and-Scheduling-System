@@ -20,7 +20,7 @@
 
         .dashboard-container {
             min-height: 100vh;
-            background: url('${pageContext.request.contextPath}/images/dashboard-bg.jpg') no-repeat center center;
+            background: url('${pageContext.request.contextPath}/images/dashboard.jpg') no-repeat center center;
             background-size: cover;
             display: flex;
             flex-direction: column;
