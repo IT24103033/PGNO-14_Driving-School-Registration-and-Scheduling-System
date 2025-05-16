@@ -4,7 +4,7 @@ import java.io.*;
 import java.util.*;
 
 public class FileHandler {
-    private static final String VEHICLE_FILE = "/Users/jiruththisiva/Desktop/DrivingSchool/data/vehicles.txt";
+    private static final String VEHICLE_FILE = "/Users/jiruththisiva/Desktop/PGNO-14_Driving-School-Registration-and-Scheduling-System/data/vehicles.txt";
 
     public static List<Vehicle> readVehicles() {
         List<Vehicle> vehicles = new ArrayList<>();

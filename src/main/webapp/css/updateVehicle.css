@@ -3,7 +3,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    background: url('images/update.jpg') no-repeat center center fixed;
+    background: url('/images/update.jpg') no-repeat center center fixed;
     background-size: cover;
     position: relative;
 }
