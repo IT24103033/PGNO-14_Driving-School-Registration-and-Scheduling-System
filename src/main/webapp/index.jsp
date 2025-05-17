@@ -1,191 +1,245 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Safety Learners - Dashboard</title>
-    <link rel="stylesheet" href="css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Safety Learners - Driving School</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --primary-blue: #1e3a8a;
-            --hover-blue: #172554;
-            --light-blue: #eff6ff;
-        }
-
-        body, html {
+        * {
             margin: 0;
             padding: 0;
-            height: 100%;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
         }
 
-        .dashboard-container {
-            min-height: 100vh;
-            background: url('${pageContext.request.contextPath}/images/dashboard.jpg') no-repeat center center;
-            background-size: cover;
+        body {
+            line-height: 1.6;
+        }
+
+        /* Top Navigation */
+        .top-nav {
+            background-color: #1e3c72;
+            padding: 15px 0;
+            color: white;
+        }
+
+        .nav-container {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            justify-content: space-between;
             align-items: center;
-            text-align: center;
-            position: relative;
-            padding: 40px 20px;
+            width: 90%;
+            margin: 0 auto;
         }
 
-        .dashboard-overlay {
+        .brand {
+            display: flex;
+            align-items: center;
+            color: white;
+            text-decoration: none;
+            font-size: 1.5em;
+            font-weight: 600;
+        }
+
+        .brand-icon {
+            font-size: 1.2em;
+            margin-right: 10px;
+        }
+
+        .user-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .login-btn {
+            background-color: #2962ff;
+            color: white;
+            padding: 8px 24px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            position: relative;
+            height: 600px;
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+                        url('https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .register-btn {
+            background-color: #2962ff;
+            color: white;
+            padding: 12px 32px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        /* Slider Navigation */
+        .slider-nav {
             position: absolute;
-            top: 0;
+            bottom: 30px;
             left: 0;
             right: 0;
-            bottom: 0;
-            background: rgba(255, 255, 255, 0.85);
-            z-index: 0;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
         }
 
-        .dashboard-content {
-            position: relative;
-            z-index: 1;
-            max-width: 1000px;
-            width: 100%;
-        }
-
-        .logo {
-            color: var(--primary-blue);
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .welcome-message {
-            color: var(--primary-blue);
-            font-size: 1.8rem;
-            margin-bottom: 2rem;
-            font-weight: 600;
-        }
-
-        /* Stats grid */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2rem;
-            margin: 3rem auto;
-            max-width: 900px;
-        }
-
-        .stat-card {
-            text-align: center;
-            padding: 1.5rem;
-            background-color: white;
-            border-radius: 0.5rem;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .stat-value {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--primary-blue);
-            margin-bottom: 0.5rem;
-        }
-
-        .stat-label {
-            color: #4b5563;
-            font-size: 1rem;
-        }
-
-        /* Register Now button */
-        .btn-register {
-            display: inline-block;
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 1rem 2.5rem;
-            border-radius: 0.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.2rem;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(30, 58, 138, 0.2);
-            margin: 2rem 0;
-            border: none;
+        .slider-dot {
+            width: 10px;
+            height: 10px;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
             cursor: pointer;
         }
 
-        .btn-register:hover {
-            background-color: var(--hover-blue);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(30, 58, 138, 0.3);
+        .slider-dot.active {
+            background-color: white;
         }
 
-        .btn-register:active {
-            transform: translateY(0);
+        /* Stats Section */
+        .stats {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+            text-align: center;
         }
 
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 1.5rem;
-            }
-
-            .logo {
-                font-size: 2.5rem;
-            }
-
-            .welcome-message {
-                font-size: 1.5rem;
-            }
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            max-width: 1200px;
+            margin: 0 auto;
         }
 
-        @media (max-width: 480px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
 
-            .logo {
-                font-size: 2rem;
-            }
+        .stat-icon {
+            width: 64px;
+            height: 64px;
+            background-color: #e8eaf6;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
 
-            .welcome-message {
-                font-size: 1.3rem;
-            }
+        .stat-number {
+            font-size: 2.5em;
+            color: #2962ff;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
 
-            .btn-register {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
-            }
+        .stat-label {
+            color: #666;
+            font-size: 1.1em;
         }
     </style>
 </head>
 <body>
-<div class="dashboard-container">
-    <div class="dashboard-overlay"></div>
-
-    <div class="dashboard-content">
-        <h1 class="logo">Safety Learners</h1>
-
-        <p class="welcome-message">Register a new student for the Safety Learners program</p>
-
-        <a href="${pageContext.request.contextPath}/registerStudent.jsp" class="btn-register">Register Now</a>
-
-        <div class="stats-grid">
-            <div class="stat-card">
-                <div class="stat-value">2,500+</div>
-                <div class="stat-label">Students Registered</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">95%</div>
-                <div class="stat-label">Pass Rate</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">15,000+</div>
-                <div class="stat-label">Driving Hours</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-value">12</div>
-                <div class="stat-label">Expert Instructors</div>
+    <nav class="top-nav">
+        <div class="nav-container">
+            <a href="index.jsp" class="brand">
+                <span class="brand-icon">➜</span>
+                Safety Learners
+            </a>
+            <div class="nav-links">
+                <% if(session.getAttribute("username") != null) { %>
+                    <span>Welcome, ${sessionScope.fullName}</span>
+                    <a href="dashboard.jsp" class="login-btn">Dashboard</a>
+                    <a href="LoginServlet?action=logout" style="color: white; margin-left: 15px;">Logout</a>
+                <% } else { %>
+                    <span>Welcome, User</span>
+                    <a href="login.jsp" class="login-btn">Login</a>
+                <% } %>
             </div>
         </div>
-    </div>
-</div>
+    </nav>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Welcome to Safety Learners</h1>
+            <p>Your journey to becoming a confident driver starts here. Schedule lessons, track your progress, and achieve your driving goals.</p>
+            <a href="registerStudent.jsp" class="register-btn">Register Now</a>
+        </div>
+        <div class="slider-nav">
+            <div class="slider-dot active"></div>
+            <div class="slider-dot" onclick="window.location.href='StudentServlet?action=list'"></div>
+        </div>
+    </section>
+
+    <section class="stats">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-icon">👥</div>
+                <div class="stat-number">2,500+</div>
+                <div class="stat-label">Students Trained</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">✓</div>
+                <div class="stat-number">95%</div>
+                <div class="stat-label">Pass Rate</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">⏰</div>
+                <div class="stat-number">15,000+</div>
+                <div class="stat-label">Hours of Training</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon">🎯</div>
+                <div class="stat-number">7</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+        </div>
+    </section>
 </body>
 </html>
 
