@@ -10,6 +10,18 @@
     return;
   }
 %>
+<%
+  String role = (String) session.getAttribute("role");
+  if (role == null) {
+
+    response.sendRedirect("login.jsp");
+    return;
+  }
+  if (application.getAttribute("queueManager") == null) {
+    request.getRequestDispatcher("/lesson").forward(request, response);
+    return;
+  }
+%>
 <html>
 <head>
   <title>Lesson Queue</title>

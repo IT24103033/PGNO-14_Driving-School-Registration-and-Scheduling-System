@@ -18,14 +18,30 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-auto">
+        <%
+          String username = (String) session.getAttribute("username");
+          String role = (String) session.getAttribute("role");
+          if (username != null && role != null) {
+        %>
+        <li class="nav-item">
+          <span class="nav-link text-white">Welcome, <%= username %> (<%= role %>)</span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link btn btn-danger" href="logout" style="font-size: 1.1rem; padding: 0.5rem 1rem;">Logout</a>
+        </li>
+        <%
+        } else {
+        %>
         <li class="nav-item">
           <a class="nav-link btn btn-primary" href="login.jsp" id="loginLink" style="font-size: 1.1rem; padding: 0.5rem 1rem;">Login</a>
         </li>
+        <%
+          }
+        %>
       </ul>
     </div>
   </div>
 </nav>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
 <style>
   .nav-link.active {
     background-color: rgba(255, 255, 255, 0.2); /* Slight white background for active link */
@@ -36,3 +52,4 @@
     border-radius: 5px;
   }
 </style>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>

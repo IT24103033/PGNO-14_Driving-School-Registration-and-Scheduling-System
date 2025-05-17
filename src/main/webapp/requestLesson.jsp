@@ -1,4 +1,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%
+  String role = (String) session.getAttribute("role");
+  if (role == null || !role.equals("Student")) {
+    response.sendRedirect("login.jsp");
+    return;
+  }
+%>
 <html>
 <head>
   <title>Request Lesson</title>
