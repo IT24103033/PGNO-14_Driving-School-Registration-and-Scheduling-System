@@ -1,0 +1,3 @@
+student1,pass123,Student
+instructor1,teach456,Instructor
+admin1,admin789,Admin
