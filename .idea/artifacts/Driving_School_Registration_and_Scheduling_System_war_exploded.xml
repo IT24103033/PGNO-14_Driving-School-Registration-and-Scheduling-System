@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Driving-School-Registration-and-Scheduling-System:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Driving_School_Registration_and_Scheduling_System_war_exploded</output-path>
+    <root id="root">
+      <element id="module-source" name="Driving-School-Registration-and-Scheduling-System" />
+      <element id="javaee-facet-resources" facet="Driving-School-Registration-and-Scheduling-System/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Driving-School-Registration-and-Scheduling-System" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
