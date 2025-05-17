@@ -200,11 +200,11 @@
             <div class="form-row">
                 <div class="form-group">
                     <label for="phoneNumber">Phone Number</label>
-                    <input type="tel" id="phoneNumber" name="phoneNumber" required>
+                    <input type="tel" id="phoneNumber" name="phoneNumber" pattern="^0\d{9}$" title="Phone number must be 10 digits and start with 0" required>
                 </div>
                 <div class="form-group">
                     <label for="age">Age</label>
-                    <input type="number" id="age" name="age" required min="16">
+                    <input type="number" id="age" name="age" min="16" max="99" title="Age must be between 16 and 99 years old" required>
                 </div>
             </div>
 
@@ -236,11 +236,28 @@
         function validateForm() {
             var password = document.getElementById('password').value;
             var confirmPassword = document.getElementById('confirmPassword').value;
+            var age = document.getElementById('age').value;
+            var phoneNumber = document.getElementById('phoneNumber').value;
             
+            // Validate age (between 16 and 99)
+            if (age < 16 || age > 99) {
+                alert('Age must be between 16 and 99 years old.');
+                return false;
+            }
+            
+            // Validate phone number (10 digits starting with 0)
+            var phoneRegex = /^0\d{9}$/;
+            if (!phoneRegex.test(phoneNumber)) {
+                alert('Phone number must be 10 digits and start with 0.');
+                return false;
+            }
+            
+            // Validate password match
             if (password !== confirmPassword) {
                 alert('Passwords do not match!');
                 return false;
             }
+            
             return true;
         }
     </script>

@@ -72,6 +72,18 @@ public class StudentServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
 
+        // Validate age
+        if (age < 16 || age > 99) {
+            response.sendRedirect("registerStudent.jsp?error=Age must be between 16 and 99 years old");
+            return;
+        }
+
+        // Validate phone number
+        if (!phoneNumber.matches("^0\\d{9}$")) {
+            response.sendRedirect("registerStudent.jsp?error=Phone number must be 10 digits and start with 0");
+            return;
+        }
+
         Student student = new Student(id, fullName, email, address, phoneNumber, age, username, password);
         fileHandler.saveStudent(student);
 
