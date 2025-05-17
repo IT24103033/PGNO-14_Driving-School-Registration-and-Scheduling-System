@@ -28,11 +28,7 @@ public class AdminServlet extends HttpServlet {
                 dataFile.getParentFile().mkdirs();
                 dataFile.createNewFile();
 
-                // Add sample data for demonstration
-//                List<Admin> sampleData = new ArrayList<>();
-//                sampleData.add(new Admin("1001", "John Doe", "john.doe@example.com", "Active"));
-//                sampleData.add(new Admin("1002", "Jane Smith", "jane.smith@example.com", "Active"));
-//                saveAdmins(sampleData);
+
             }
         } catch (IOException e) {
             throw new ServletException("Failed to initialize admin data file", e);
@@ -51,13 +47,13 @@ public class AdminServlet extends HttpServlet {
                 request.setAttribute("admin", adminToEdit);
                 request.getRequestDispatcher("edit.jsp").forward(request, response);
             } else {
-                response.sendRedirect("dashboard.jsp");
+                response.sendRedirect("adminList.jsp");
             }
         } else {
             // Default action - show all admins
             List<Admin> adminList = loadAdmins();
             request.setAttribute("adminList", adminList);
-            request.getRequestDispatcher("dashboard.jsp").forward(request, response);
+            request.getRequestDispatcher("adminList.jsp").forward(request, response);
         }
     }
 
