@@ -5,7 +5,7 @@ import java.util.*;
 import jakarta.servlet.ServletContext;
 
 public class FileHandler {
-    private String filePath;
+    private final String filePath;
 
     public FileHandler(String filePath) {
         this.filePath = filePath;
@@ -13,8 +13,8 @@ public class FileHandler {
 
     public void saveStudent(Student student) throws IOException {
         // Get the absolute path
-        String absolutePath = new File(filePath).getAbsolutePath();
-        File file = new File(absolutePath);
+        File file = new File(this.filePath);
+        System.out.println(file);
 
         // Ensure the parent directory exists
         File parentDir = file.getParentFile();

@@ -40,7 +40,7 @@ public class Student {
 
     // toFileString method for saving to file
     public String toFileString() {
-        return id + "," + fullName + "," + email + "," + address + "," + phoneNumber + "," + age + "," + username + "," + password;
+        return username + "," + password + ",Student" + "\n";
     }
 
     @Override

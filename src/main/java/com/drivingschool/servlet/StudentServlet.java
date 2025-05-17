@@ -13,7 +13,8 @@ import java.util.*;
 
 @WebServlet("/StudentServlet")
 public class StudentServlet extends HttpServlet {
-    private final FileHandler fileHandler = new FileHandler("data/users.txt");
+
+    private final FileHandler fileHandler = new FileHandler("/Users/sujana/IdeaProjects/Driving-School-Registration-and-Scheduling-System/target/Driving-School-Registration-and-Scheduling-System/data/users.txt");
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -74,6 +75,7 @@ public class StudentServlet extends HttpServlet {
 
         Student student = new Student(id, fullName, email, address, phoneNumber, age, username, password);
         fileHandler.saveStudent(student);
+
 
         response.sendRedirect("login.jsp?message=Registration successful! Please login.");
     }
