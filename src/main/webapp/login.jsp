@@ -36,6 +36,7 @@
         </div>
         <button type="submit" class="btn btn-primary">Login</button>
         <a href="index.jsp" class="btn btn-secondary">Back to Home</a>
+        <p>Don't have an account? <a href="registerStudent.jsp">Register</a></p>
     </form>
 </div>
 </body>

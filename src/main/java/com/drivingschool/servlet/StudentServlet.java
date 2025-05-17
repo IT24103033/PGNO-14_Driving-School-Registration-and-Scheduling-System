@@ -13,7 +13,7 @@ import java.util.*;
 
 @WebServlet("/StudentServlet")
 public class StudentServlet extends HttpServlet {
-    private final FileHandler fileHandler = new FileHandler("data/students.txt");
+    private final FileHandler fileHandler = new FileHandler("data/users.txt");
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
