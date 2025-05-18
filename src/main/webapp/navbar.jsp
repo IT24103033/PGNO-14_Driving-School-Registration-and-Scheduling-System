@@ -10,18 +10,26 @@
         <li class="nav-item">
           <a class="nav-link" href="index.jsp" id="homeLink">Home</a>
         </li>
+
+        <%
+          String username = (String) session.getAttribute("username");
+          String role = (String) session.getAttribute("role");
+
+          if ("Student".equals(role)) {
+        %>
         <li class="nav-item">
           <a class="nav-link" href="requestLesson.jsp" id="requestLessonLink">Request Lesson</a>
         </li>
+        <% } %>
+
         <li class="nav-item">
           <a class="nav-link" href="lessonQueue.jsp" id="lessonQueueLink">Lesson Queue</a>
         </li>
       </ul>
+
       <ul class="navbar-nav ms-auto">
         <%
-          String username = (String) session.getAttribute("username");
-          String role = (String) session.getAttribute("role");
-          if (username != null && role != null) {
+          if (username != null && role != null){
         %>
         <li class="nav-item">
           <span class="nav-link text-white">Welcome, <%= username %> (<%= role %>)</span>
@@ -42,6 +50,7 @@
     </div>
   </div>
 </nav>
+
 <style>
   .nav-link.active {
     background-color: rgba(255, 255, 255, 0.2); /* Slight white background for active link */
@@ -52,4 +61,5 @@
     border-radius: 5px;
   }
 </style>
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
