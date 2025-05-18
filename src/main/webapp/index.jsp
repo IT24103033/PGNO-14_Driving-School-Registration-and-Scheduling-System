@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -143,5 +142,4 @@
 </footer>
 </body>
 </html>
-=======
->>>>>>> origin/IT24101396_Instructor_Management
+
