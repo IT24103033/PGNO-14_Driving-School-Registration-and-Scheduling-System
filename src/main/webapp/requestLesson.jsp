@@ -5,6 +5,11 @@
     response.sendRedirect("login.jsp");
     return;
   }
+  String loggedInUsername = (String) session.getAttribute("username");
+  if (loggedInUsername == null) {
+    response.sendRedirect("login.jsp");
+    return;
+  }
 %>
 <html>
 <head>
@@ -33,7 +38,7 @@
     <input type="hidden" name="action" value="request">
     <div class="mb-3">
       <label for="studentId" class="form-label">Student ID</label>
-      <input type="text" class="form-control" id="studentId" name="studentId" value="<%= studentId != null ? studentId : "" %>" required>
+      <input type="text" class="form-control" id="studentId" name="studentId" value="<%= loggedInUsername %>" readonly required>
     </div>
     <div class="mb-3">
       <label for="lessonType" class="form-label">Lesson Type</label>
