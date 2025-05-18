@@ -95,7 +95,7 @@
         <form action="lesson" method="post" style="display:inline;">
           <input type="hidden" name="action" value="schedule">
           <input type="hidden" name="lessonId" value="<%= lesson.getLessonId() %>">
-          <button type="submit" class="btn btn-primary action-btn">Schedule</button>
+<%--          <button type="submit" class="btn btn-primary action-btn">Schedule</button>--%>
         </form>
         <form action="lesson" method="post" style="display:inline;">
           <input type="hidden" name="action" value="remove">
