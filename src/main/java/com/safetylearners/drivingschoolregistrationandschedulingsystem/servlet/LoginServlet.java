@@ -56,7 +56,11 @@ public class LoginServlet extends HttpServlet {
         session.setAttribute("role", user.getRole());
 
         // Redirect all user to index.jsp
-        response.sendRedirect("index.jsp");
+        if (user.getRole().equals("Admin")) {
+            response.sendRedirect("dashboard.jsp");
+        } else {
+            response.sendRedirect("index.jsp");
+        }
     }
 
     @Override
