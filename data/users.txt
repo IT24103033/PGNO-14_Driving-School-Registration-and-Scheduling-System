@@ -2,8 +2,6 @@ student1,pass123,Student
 instructor1,teach456,Instructor
 admin1,admin789,Admin
 student134,pass123,Student
-
 student134342353,pass123,Student
-
 sujana123,pass123,Student
 

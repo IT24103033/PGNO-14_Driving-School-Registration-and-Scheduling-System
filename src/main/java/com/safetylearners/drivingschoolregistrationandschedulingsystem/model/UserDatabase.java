@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class UserDatabase {
-    private static final String USERS_FILE = "/data/users.txt";
+    private static final String USERS_FILE = "data/users.txt";
     private Map<String, User> users;
 
     public UserDatabase(String contextPath) {

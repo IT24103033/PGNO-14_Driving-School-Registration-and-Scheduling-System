@@ -25,6 +25,9 @@
         <li class="nav-item">
           <a class="nav-link" href="lessonQueue.jsp" id="lessonQueueLink">Lesson Queue</a>
         </li>
+        <li class="nav-item">
+          <a class="nav-link" href="submitFeedback.jsp" id="feedbackLink">Feedbacks</a>
+        </li>
       </ul>
 
       <ul class="navbar-nav ms-auto">

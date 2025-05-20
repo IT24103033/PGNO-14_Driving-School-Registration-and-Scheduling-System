@@ -24,17 +24,17 @@
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="student-management.jsp">
+      <a class="nav-link" href="studentList.jsp">
         <i class="fas fa-user-graduate"></i> Student Management
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="instructor-management.jsp">
+      <a class="nav-link" href="instructorList.jsp">
         <i class="fas fa-chalkboard-teacher"></i> Instructor Management
       </a>
     </li>
     <li class="nav-item">
-      <a class="nav-link" href="vehicle-management.jsp">
+      <a class="nav-link" href="vehicleList.jsp">
         <i class="fas fa-car"></i> Vehicle Management
       </a>
     </li>
