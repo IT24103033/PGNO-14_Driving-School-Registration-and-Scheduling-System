@@ -38,6 +38,11 @@
         <i class="fas fa-car"></i> Vehicle Management
       </a>
     </li>
+    <li class="nav-item">
+      <a class="nav-link" href="lessonQueue.jsp">
+        <i class="fas fa-list-ol"></i> Lesson Management
+      </a>
+    </li>
   </ul>
 </div>
 
@@ -72,7 +77,7 @@
           </div>
           <div>
             <div class="stat-label">Instructors</div>
-            <div class="stat-value">24</div>
+            <div class="stat-value">21</div>
             <div class="stat-detail">18 active classes</div>
           </div>
         </div>
